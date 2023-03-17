@@ -1,6 +1,3 @@
-#ifndef __SORT__
-#define __SORT__
-
 /* comparison function for qsort() 
  * SortAT -> sort by arrival time
  * see `man qsort`
@@ -16,4 +13,3 @@ int SortAT(const void *a, const void *b) {
     return ptrA->at - ptrB->at;
 }
 
-#endif

@@ -1,6 +1,3 @@
-#ifndef __CUSTOM__QUEUE__
-#define __CUSTOM__QUEUE__
-
 /* These are custom queue functions for queue data structure */
 /* Here we have defined two variation of queue integer and string */
 /* full documentation of this code can be found in the below links */
@@ -52,22 +49,22 @@ static void FreeQueueINT(head_t_int * head) {
     }
 }
 
-static void PrintQueueINT(head_t_int * head) {
-    node_t_int * e = NULL;
-    TAILQ_FOREACH(e, head, nodes_int) {
-        printf("%d\n", e->c);
-    }
-}
+/* static void PrintQueueINT(head_t_int * head) { */
+/*     node_t_int * e = NULL; */
+/*     TAILQ_FOREACH(e, head, nodes_int) { */
+/*         printf("%d\n", e->c); */
+/*     } */
+/* } */
 
-static int CountQueueINT(head_t_int * head) {
-    int count = 0;
-    node_t_int * e = NULL;
-    TAILQ_FOREACH(e, head, nodes_int) {
-        count++;
-    }
+/* static int CountQueueINT(head_t_int * head) { */
+/*     int count = 0; */
+/*     node_t_int * e = NULL; */
+/*     TAILQ_FOREACH(e, head, nodes_int) { */
+/*         count++; */
+/*     } */
 
-    return count;
-}
+/*     return count; */
+/* } */
 
 static int SumQueueINT(head_t_int * head) {
     int sum = 0;
@@ -102,12 +99,12 @@ static int EnQueueSTR(head_t_str * head, const char * str) {
     return 0;
 }
 
-static void PrintQueueSTR(head_t_str * head) {
-    node_t_str * e = NULL;
-    TAILQ_FOREACH(e, head, nodes_str) {
-        printf("%s\n", e->c);
-    }
-}
+/* static void PrintQueueSTR(head_t_str * head) { */
+/*     node_t_str * e = NULL; */
+/*     TAILQ_FOREACH(e, head, nodes_str) { */
+/*         printf("%s\n", e->c); */
+/*     } */
+/* } */
 
 static void FreeQueueSTR(head_t_str * head) {
     node_t_str * e = NULL;
@@ -118,5 +115,3 @@ static void FreeQueueSTR(head_t_str * head) {
         e = NULL;
     }
 }
-
-#endif

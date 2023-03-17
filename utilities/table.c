@@ -1,6 +1,3 @@
-#ifndef __TABLEMAKER__
-#define __TABLEMAKER__
-
 /* Finds average waiting time of the given processes 
  * @param reference of process_t array
  * @param length of the process_t array
@@ -61,5 +58,3 @@ void TableMaker(process_t * process, int len, int pFlag) {
     printf("\n");
 
 }
-
-#endif

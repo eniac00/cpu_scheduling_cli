@@ -1,7 +1,7 @@
-#ifndef __ALGORITHMS__
-#define __ALGORITHMS__
+#ifndef __ALGORITHMS_H__
+#define __ALGORITHMS_H__
 
-#include "fcfs.h"
-#include "rr.h"
+#include "fcfs.c"
+#include "rr.c"
 
 #endif

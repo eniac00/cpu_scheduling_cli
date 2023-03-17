@@ -1,6 +1,3 @@
-#ifndef __PROCESS__
-#define __PROCESS__
-
 /* process struct where all of the informations of a process are stored in
  * pid[2] -> process name or ID
  * at -> arrival time
@@ -19,5 +16,3 @@ typedef struct process {
     int wt;
     int prt;
 } process_t;
-
-#endif

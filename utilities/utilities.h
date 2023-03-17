@@ -1,12 +1,12 @@
-#ifndef __UTILITIES__
-#define __UTILITIES__
+#ifndef __UTILITIES_H__
+#define __UTILITIES_H__
 
-#include "cqueue.h"
-#include "gantt.h"
-#include "process.h"
-#include "sort.h"
-#include "table.h"
-#include "input.h"
+#include "cqueue.c"
+#include "gantt.c"
+#include "process.c"
+#include "sort.c"
+#include "table.c"
+#include "input.c"
 
 #endif
 

@@ -1,6 +1,3 @@
-#ifndef __GANTT_CHART_MAKER__
-#define __GANTT_CHART_MAKER__
-
 /* We have tried to make three queues one for elapsed time or the each box size
  * one for the process names and another one for the range [ie each box start and finish time]
  
@@ -121,5 +118,3 @@ void MakeGanttChart(head_t_int * elapsedTime, head_t_int * intervals, head_t_str
 //####################################################
 
 }
-
-#endif

@@ -1,6 +1,3 @@
-#ifndef __INPUT__
-#define __INPUT__
-
 /* Takes input and makes process entries
  * Returns a process_t pointer basically  creates an process array and returns it
  * @param file name where to read
@@ -104,6 +101,4 @@ int TQinput() {
 
     return tq;
 }
-
-#endif
 

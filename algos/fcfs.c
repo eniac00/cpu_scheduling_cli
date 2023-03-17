@@ -1,6 +1,3 @@
-#ifndef __FCFS__
-#define __FCFS__
-
 void FCFS(process_t *process, int len) {
 
     // sorting all the process based on arrival time
@@ -60,5 +57,3 @@ void FCFS(process_t *process, int len) {
     FreeQueueSTR(&processNames);
 
 }
-
-#endif
