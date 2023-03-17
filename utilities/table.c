@@ -34,6 +34,10 @@ float AverageTAT(process_t * process, int len) {
  */
 void TableMaker(process_t * process, int len, int pFlag) {
 
+    /* for (int i=0; i<len; i++) { */
+    /*     printf("%s\t%d\t%d\t%d\n", process[i].pid, process[i].at, process[i].bt, process[i].ct); */
+    /* } */
+
 
     if (pFlag) {
         printf("ppp\n");

@@ -51,6 +51,9 @@ static void FreeQueueINT(head_t_int * head) {
 
 /* static void PrintQueueINT(head_t_int * head) { */
 /*     node_t_int * e = NULL; */
+/*     if (TAILQ_EMPTY(head)) { */
+/*         printf("Empty\n"); */
+/*     } */
 /*     TAILQ_FOREACH(e, head, nodes_int) { */
 /*         printf("%d\n", e->c); */
 /*     } */
