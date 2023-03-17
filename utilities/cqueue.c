@@ -59,6 +59,28 @@ static void FreeQueueINT(head_t_int * head) {
 /*     } */
 /* } */
 
+static int ExistINT(head_t_int * head, const int num) {
+    node_t_int * e = NULL;
+    TAILQ_FOREACH(e, head, nodes_int) {
+        if (e->c == num) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// takeout the first value and return and remove from the queue
+int Dequeue(head_t_int * head) {
+    node_t_int * e = NULL;
+    int num = -1;
+    e = TAILQ_FIRST(head);
+    num = e->c;
+    TAILQ_REMOVE(head, e, nodes_int);
+    free(e);
+    return num;
+}
+
+
 /* static int CountQueueINT(head_t_int * head) { */
 /*     int count = 0; */
 /*     node_t_int * e = NULL; */

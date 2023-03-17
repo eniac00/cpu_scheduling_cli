@@ -1,23 +1,13 @@
 // what new processes came in the given interval find that and insert inside the queue
-void NewProcess(process_t * process, int len, int start, int end, head_t_int * head) {
+void NewProcess(process_t * process, int len, int start, int end, head_t_int * head, int cp) {
     for (int i=0; i<len; i++) {
-        if (process[i].at > start && process[i].at <= end) {
-            EnQueueINT(head, i);
+        if (process[i].at >= start && process[i].at <= end) {
+            if (!ExistINT(head, i) && i != cp) {
+                EnQueueINT(head, i);
+            }
         }
     }
 }
-
-// takeout the first value and return and remove from the queue
-int Dequeue(head_t_int * readyQ) {
-    node_t_int * e = NULL;
-    int index = -1;
-    e = TAILQ_FIRST(readyQ);
-    index = e->c;
-    TAILQ_REMOVE(readyQ, e, nodes_int);
-    free(e);
-    return index;
-}
-
 
 void RR(process_t * process, int len, int tq) {
 
@@ -63,8 +53,7 @@ void RR(process_t * process, int len, int tq) {
                 start_time += elapsed_time;
                 bt[cp] -= tq;
 
-                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ);
-
+                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
 
                 EnQueueINT(&elapsedTime, elapsed_time);
                 EnQueueSTR(&processNames, process[cp].pid);
@@ -76,12 +65,13 @@ void RR(process_t * process, int len, int tq) {
                 } else {
                     EnQueueINT(&readyQ, cp);
                 }
+
             } else {
                 elapsed_time = bt[cp];
                 start_time += elapsed_time;
                 bt[cp] = 0;
 
-                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ);
+                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
 
                 EnQueueINT(&elapsedTime, elapsed_time);
                 EnQueueSTR(&processNames, process[cp].pid);
@@ -98,6 +88,7 @@ void RR(process_t * process, int len, int tq) {
         process[i].wt = process[i].tat - process[i].bt;
     }
 
+    printf("\n\n\tRR [Round Robin] \n\n\n");
 
     MakeGanttChart(&elapsedTime, &intervals, &processNames);
     // making the table
