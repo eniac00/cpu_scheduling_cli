@@ -73,15 +73,15 @@ void SortQueueINT_Arr(int *arr, head_t_int * head) {
 }
 
 
-static void PrintQueueINT(head_t_int * head) {
-    node_t_int * e = NULL;
-    if (TAILQ_EMPTY(head)) {
-        printf("Empty\n");
-    }
-    TAILQ_FOREACH(e, head, nodes_int) {
-        printf("%d\n", e->c);
-    }
-}
+/* static void PrintQueueINT(head_t_int * head) { */
+/*     node_t_int * e = NULL; */
+/*     if (TAILQ_EMPTY(head)) { */
+/*         printf("Empty\n"); */
+/*     } */
+/*     TAILQ_FOREACH(e, head, nodes_int) { */
+/*         printf("%d\n", e->c); */
+/*     } */
+/* } */
 
 static int ExistINT(head_t_int * head, const int num) {
     node_t_int * e = NULL;
