@@ -3,6 +3,8 @@
 
 A basic CLI simulator for cpu scheduling algorithms written in `C`. This simulator will help you to visualize `Gantt Chart` along with process information. Tried to make it as beginner friendly as possible both for the user and developer. The algorithms are implemented like the method we use while doing these by pen and paper.
 
+![demo](./.tutorial/demo.png)
+
 ## Folder Structure
 ---
 
