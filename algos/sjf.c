@@ -1,4 +1,4 @@
-void RR(process_t * process, int len, int tq) {
+void SJF(process_t * process, int len) {
 
     qsort(process, len, sizeof(process[0]), SortAT);
 
@@ -18,14 +18,18 @@ void RR(process_t * process, int len, int tq) {
     int cp = 0;  // current process
     int total_process_finished = 0;
 
+    // copying all the processes burst time to bt[]
     for (int i=0; i<len; i++) {
         bt[i] = process[i].bt;
     }
 
     EnQueueINT(&intervals, start_time);
     EnQueueINT(&readyQ, cp);
+    NewProcess(process, len, start_time, start_time, &readyQ, cp);
+    SortQueueINT_Arr(bt, &readyQ);
 
     while (!TAILQ_EMPTY(&readyQ) && total_process_finished<len) {
+        cp = Dequeue(&readyQ);
         if (start_time < process[cp].at) {
             elapsed_time = process[cp].at - start_time;
             start_time += elapsed_time;
@@ -33,42 +37,18 @@ void RR(process_t * process, int len, int tq) {
             EnQueueINT(&elapsedTime, elapsed_time);
             EnQueueSTR(&processNames, "-");
             EnQueueINT(&intervals, start_time);
+            EnQueueINT(&readyQ, cp);
         } else {
+            start_time += bt[cp];
+            elapsed_time = bt[cp];
+            NewProcess(process, len, start_time - bt[cp], start_time, &readyQ, cp); 
+            SortQueueINT_Arr(bt, &readyQ);
+            process[cp].ct = start_time;
+            total_process_finished++;
 
-            cp = Dequeue(&readyQ);
-
-            if (bt[cp] > tq) {
-                elapsed_time = tq;
-                start_time += elapsed_time;
-                bt[cp] -= tq;
-
-                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
-
-                EnQueueINT(&elapsedTime, elapsed_time);
-                EnQueueSTR(&processNames, process[cp].pid);
-                EnQueueINT(&intervals, start_time);
-
-                if (bt[cp] == 0) {
-                    process[cp].ct = start_time;
-                    total_process_finished++;
-                } else {
-                    EnQueueINT(&readyQ, cp);
-                }
-
-            } else {
-                elapsed_time = bt[cp];
-                start_time += elapsed_time;
-                bt[cp] = 0;
-
-                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
-
-                EnQueueINT(&elapsedTime, elapsed_time);
-                EnQueueSTR(&processNames, process[cp].pid);
-                EnQueueINT(&intervals, start_time);
-
-                process[cp].ct = start_time;
-                total_process_finished++;
-            }
+            EnQueueINT(&elapsedTime, elapsed_time);
+            EnQueueSTR(&processNames, process[cp].pid);
+            EnQueueINT(&intervals, start_time);
         }
     }
 
@@ -77,7 +57,7 @@ void RR(process_t * process, int len, int tq) {
         process[i].wt = process[i].tat - process[i].bt;
     }
 
-    printf("\n\n\tRR [Round Robin] \n\n\n");
+    printf("\n\n\tSJF [Shortest Job First] \n\n\n");
 
     MakeGanttChart(&elapsedTime, &intervals, &processNames);
     // making the table

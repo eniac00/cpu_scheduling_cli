@@ -49,15 +49,39 @@ static void FreeQueueINT(head_t_int * head) {
     }
 }
 
-/* static void PrintQueueINT(head_t_int * head) { */
-/*     node_t_int * e = NULL; */
-/*     if (TAILQ_EMPTY(head)) { */
-/*         printf("Empty\n"); */
-/*     } */
-/*     TAILQ_FOREACH(e, head, nodes_int) { */
-/*         printf("%d\n", e->c); */
-/*     } */
-/* } */
+// sort the queue using an supporting array
+// queue will be sorted based on the value in array
+void SortQueueINT_Arr(int *arr, head_t_int * head) {
+    node_t_int * e = NULL;
+    node_t_int * f = NULL;
+    int temp;
+
+    e = TAILQ_FIRST(head);
+
+    while (e!=NULL) {
+        f = TAILQ_NEXT(e, nodes_int);
+        while (f!=NULL) {
+            if (arr[e->c] > arr[f->c]) {
+                temp = e->c;
+                e->c = f->c;
+                f->c = temp;
+            }
+            f = TAILQ_NEXT(f, nodes_int);
+        }
+        e = TAILQ_NEXT(e, nodes_int);
+    }
+}
+
+
+static void PrintQueueINT(head_t_int * head) {
+    node_t_int * e = NULL;
+    if (TAILQ_EMPTY(head)) {
+        printf("Empty\n");
+    }
+    TAILQ_FOREACH(e, head, nodes_int) {
+        printf("%d\n", e->c);
+    }
+}
 
 static int ExistINT(head_t_int * head, const int num) {
     node_t_int * e = NULL;

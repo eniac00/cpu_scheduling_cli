@@ -34,8 +34,7 @@ int main (int argc, char *argv []) {
     if (strcmp(argv[1], "FCFS") == 0) {
         FCFS(process, len);
     } else if (strcmp(argv[1], "SJF") == 0) {
-        fprintf(stderr, "Not implemented\n");
-        /* SJF(); */
+        SJF(process, len);
     } else if (strcmp(argv[1], "RR") == 0) {
         int tq = TQinput();
         RR(process, len, tq);

@@ -26,7 +26,7 @@ void PreProcess(head_t_int * elapsedTime) {
     
     node_t_int * e = NULL;
     TAILQ_FOREACH(e, elapsedTime, nodes_int) {
-        temp = (((float)(e->c)/sum)*20)+1;
+        temp = (((float)(e->c)/sum)*5)+1;
         e->c = temp;
     }
 }
