@@ -77,7 +77,9 @@ void RR(process_t * process, int len, int tq) {
         process[i].wt = process[i].tat - process[i].bt;
     }
 
-    printf("\n\n\tRR [Round Robin] \n\n\n");
+    printf(BOLD YEL "\n\n\tRR [Round Robin] \n" RESET);
+    printf(BOLD GRN "\tTime Quantum: %d \n\n\n", tq);
+    printf(RESET);
 
     MakeGanttChart(&elapsedTime, &intervals, &processNames);
     // making the table

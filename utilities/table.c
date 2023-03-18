@@ -43,20 +43,22 @@ void TableMaker(process_t * process, int len, int pFlag) {
         printf("ppp\n");
     } else {
         printf("\n");
-        printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n");
+        printf(BOLD BLU "\t+-----+-------------+------------+-----------------+-----------------+--------------+\n");
         printf("\t| PID | Arival Time | Burst Time | Completion Time | Turnaround Time | Waiting Time |\n");
-        printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n");
+        printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n" RESET);
 
         for (int i=0; i<len; i++) {
-            printf("\t| %3s |     %3d     |     %3d    |       %3d       |       %3d       |     %3d      |\n", process[i].pid, process[i].at, process[i].bt, process[i].ct, process[i].tat, process[i].wt);
-            printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n");
+            printf(BOLD WHT"\t| %3s |     %3d     |     %3d    |       %3d       |       %3d       |     %3d      |\n", process[i].pid, process[i].at, process[i].bt, process[i].ct, process[i].tat, process[i].wt);
+            printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n" RESET);
         }
     }
 
 	printf("\n");
 
-    printf("\n\tAverage Waiting Time     : %-2.3f\n", AverageWT(process, len));
-	printf("\tAverage Turnaround Time  : %-2.3f\n", AverageTAT(process, len));
+    printf(BOLD MAG "\n\tAverage Waiting Time     : " RESET);
+    printf("%-2.3f\n", AverageWT(process, len));
+	printf(BOLD MAG "\tAverage Turnaround Time  : " RESET);
+    printf("%-2.3f\n", AverageTAT(process, len));
     
     printf("\n");
     printf("\n");

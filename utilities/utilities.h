@@ -2,6 +2,7 @@
 #define __UTILITIES_H__
 
 #include "cqueue.c"
+#include "colors.h"
 #include "gantt.c"
 #include "process.c"
 #include "sort.c"

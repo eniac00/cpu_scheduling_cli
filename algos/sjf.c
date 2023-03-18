@@ -57,7 +57,7 @@ void SJF(process_t * process, int len) {
         process[i].wt = process[i].tat - process[i].bt;
     }
 
-    printf("\n\n\tSJF [Shortest Job First] \n\n\n");
+    printf(BOLD YEL "\n\n\tSJF [Shortest Job First] \n\n\n" RESET);
 
     MakeGanttChart(&elapsedTime, &intervals, &processNames);
     // making the table

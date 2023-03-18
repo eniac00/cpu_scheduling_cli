@@ -44,7 +44,7 @@ void FCFS(process_t *process, int len) {
         }
     }
 
-    printf("\n\n\tFCFS [First Come First Serve] \n\n\n");
+    printf(BOLD YEL "\n\n\tFCFS [First Come First Serve] \n\n\n" RESET);
 
     // making the gantt chart
     MakeGanttChart(&elapsedTime, &intervals, &processNames);

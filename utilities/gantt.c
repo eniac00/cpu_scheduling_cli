@@ -74,7 +74,9 @@ void MakeGanttChart(head_t_int * elapsedTime, head_t_int * intervals, head_t_str
         printf("|");
         for (int j=0; j<(et->c)+2; j++) {
             if (((et->c)/2)+1 == j) {
+                printf(BOLD CYN);
                 printf("%2s", pname->c);
+                printf(RESET);
                 j++;
             }
             printf("  ");
@@ -106,14 +108,18 @@ void MakeGanttChart(head_t_int * elapsedTime, head_t_int * intervals, head_t_str
     et = TAILQ_FIRST(elapsedTime);
     ivals = TAILQ_FIRST(intervals);
     while (et != NULL) {
+        printf(BOLD GRN);
         printf("%-3d", ivals->c);
+        printf(RESET);
         for (int j=0; j<(et->c)+1; j++) {
             printf("  ");
         }
         et = TAILQ_NEXT(et, nodes_int);
         ivals = TAILQ_NEXT(ivals, nodes_int);
     }
+    printf(BOLD GRN);
     printf("%-3d", ivals->c);
+    printf(RESET);
     printf("\n");
 //####################################################
 
