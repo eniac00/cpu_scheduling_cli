@@ -1,7 +1,36 @@
 # Cpu_Scheduling_CLI
 ---
 
-A basic CLI simulator for cpu scheduling algorithms written in `c`. This simulator will print you a `Gantt Chart` along with process information.
+A basic CLI simulator for cpu scheduling algorithms written in `C`. This simulator will help you to visualize `Gantt Chart` along with process information. Tried to make it as beginner friendly as possible both for the user and developer. The algorithms are implemented like the method we use while doing these by pen and paper.
+
+## Folder Structure
+---
+
+```
+.
+├── algos
+│   ├── algos.h
+│   ├── fcfs.c
+│   ├── functions.c
+│   ├── rr.c
+│   └── sjf.c
+├── compile.sh
+├── cpu
+├── LICENSE
+├── main.c
+├── process.txt
+├── README.md
+└── utilities
+    ├── colors.h
+    ├── cqueue.c
+    ├── gantt.c
+    ├── input.c
+    ├── process.c
+    ├── sort.c
+    ├── table.c
+    └── utilities.h
+```
+
 
 ## Compile
 ---
@@ -19,7 +48,7 @@ chmod +x compile.sh
 ## Run
 ---
 ```
-./cpu <algorithm> <text_file_containing_process>
+./cpu <algorithm> <text_file_containing_process_info>
 ```
 
 ## Process text file should contain
@@ -47,3 +76,7 @@ P2 3 8 1
 |  ┕----------> arrival time
 ┕-------------> process name or ID
 ```
+
+## Tutorial
+---
+![tutorial](./.tutorial/tutorial.gif)
