@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/sh
 
 gcc -o cpu -g -Wall -fsanitize=address main.c
 
