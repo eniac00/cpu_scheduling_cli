@@ -40,11 +40,19 @@ void TableMaker(process_t * process, int len, int pFlag) {
 
 
     if (pFlag) {
-        printf("ppp\n");
+        printf("\n");
+        printf(BOLD BLU "\t+-----+----------+--------------+------------+-----------------+-----------------+--------------+\n");
+        printf("\t| PID | Priority | Arrival Time | Burst Time | Completion Time | Turnaround Time | Waiting Time |\n");
+        printf("\t+-----+----------+--------------+------------+-----------------+-----------------+--------------+\n" RESET);
+
+        for (int i=0; i<len; i++) {
+            printf(BOLD WHT"\t| %3s |   %3d    |     %3d      |     %3d    |       %3d       |       %3d       |     %3d      |\n", process[i].pid, process[i].prt, process[i].at, process[i].bt, process[i].ct, process[i].tat, process[i].wt);
+            printf("\t+-----+----------+--------------+------------+-----------------+-----------------+--------------+\n" RESET);
+        }
     } else {
         printf("\n");
         printf(BOLD BLU "\t+-----+-------------+------------+-----------------+-----------------+--------------+\n");
-        printf("\t| PID | Arival Time | Burst Time | Completion Time | Turnaround Time | Waiting Time |\n");
+        printf("\t| PID | Arrival Time | Burst Time | Completion Time | Turnaround Time | Waiting Time |\n");
         printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n" RESET);
 
         for (int i=0; i<len; i++) {

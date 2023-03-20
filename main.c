@@ -39,8 +39,7 @@ int main (int argc, char *argv []) {
         int tq = TQinput();
         RR(process, len, tq);
     } else if (strcmp(argv[1], "NPP") == 0) {
-        fprintf(stderr, "Not implemented\n");
-        /* NPPS(); */
+        NPP(process, len);
     } else if (strcmp(argv[1], "PP") == 0) {
         fprintf(stderr, "Not implemented\n");
         /* PPS(); */

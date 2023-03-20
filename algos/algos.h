@@ -5,5 +5,6 @@
 #include "fcfs.c"
 #include "rr.c"
 #include "sjf.c"
+#include "npp.c"
 
 #endif
