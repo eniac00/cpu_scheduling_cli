@@ -49,9 +49,12 @@ static void FreeQueueINT(head_t_int * head) {
     }
 }
 
-// sort the queue using an supporting array
-// queue will be sorted based on the value in array
-void SortQueueINT_Arr(int *arr, head_t_int * head) {
+/*sort the queue using an supporting array
+ * queue will be sorted based on the value in array
+ * @param an array that will be the basis of the sorting usually burt_time array or priority array
+ * @param head reference of the ready queue
+ */
+static void SortQueueINT_Arr(int *arr, head_t_int * head) {
     node_t_int * e = NULL;
     node_t_int * f = NULL;
     int temp;
@@ -62,6 +65,11 @@ void SortQueueINT_Arr(int *arr, head_t_int * head) {
         f = TAILQ_NEXT(e, nodes_int);
         while (f!=NULL) {
             if (arr[e->c] > arr[f->c]) {
+                temp = e->c;
+                e->c = f->c;
+                f->c = temp;
+            }
+            if (arr[e->c] == arr[f->c] && e->c > f->c) {
                 temp = e->c;
                 e->c = f->c;
                 f->c = temp;
@@ -94,7 +102,7 @@ static int ExistINT(head_t_int * head, const int num) {
 }
 
 // takeout the first value and return and remove from the queue
-int Dequeue(head_t_int * head) {
+static int Dequeue(head_t_int * head) {
     node_t_int * e = NULL;
     int num = -1;
     e = TAILQ_FIRST(head);

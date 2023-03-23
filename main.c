@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "utilities/utilities.h"
+#include "utils/utils.h"
 #include "algos/algos.h"
 
 
@@ -8,7 +8,7 @@ int main (int argc, char *argv []) {
 
     if (argc < 2) {
         fprintf(stderr, "Run command: %s <algorithm> <text_file>\n", argv[0]);
-        fprintf(stderr, "FCFS [First Come First Served]\nSJF [Shortest Job First]\nSRT [Shortest Remaining Time]\nNPPS [Non-Preemptive Priority Scheduling]\nPPS [Preemptive Priority Scheduling]\nRR [Round Robin]\n");
+        fprintf(stderr, "FCFS [First Come First Served]\nSJF [Shortest Job First]\nSRTF [Shortest Remaining Time First]\nNPP [Non Preemptive Priority]\nPP [Preemptive Priority Scheduling]\nRR [Round Robin]\n");
         return 1;
     }
 
@@ -43,10 +43,8 @@ int main (int argc, char *argv []) {
     } else if (strcmp(argv[1], "PP") == 0) {
         fprintf(stderr, "Not implemented\n");
         /* PPS(); */
-
     } else if (strcmp(argv[1], "SRTF") == 0) {
-        fprintf(stderr, "Not implemented\n");
-        /* SRT(); */
+        SRTF(process, len);
     } else {
         fprintf(stderr, "Error\n");
     }

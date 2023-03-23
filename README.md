@@ -5,6 +5,14 @@ A basic CLI simulator for cpu scheduling algorithms written in `C`. This simulat
 
 ![demo](./.tutorial/demo.png)
 
+## Algorithms Implemented
+- [x] FCFS [First Come First Serve]
+- [x] RR [Round Robin]
+- [x] SJF [Shortest Job First]
+- [x] SRTF [Shortest Remaining Time First]
+- [x] NPP [Non Preemptive Priority]
+- [ ] PP [Preemptive Priority]
+
 ## Folder Structure
 ---
 
@@ -14,15 +22,16 @@ A basic CLI simulator for cpu scheduling algorithms written in `C`. This simulat
 │   ├── algos.h
 │   ├── fcfs.c
 │   ├── functions.c
+│   ├── npp.c
 │   ├── rr.c
-│   └── sjf.c
+│   ├── sjf.c
+│   └── srtf.c
 ├── compile.sh
-├── cpu
 ├── LICENSE
 ├── main.c
 ├── process.txt
 ├── README.md
-└── utilities
+└── utils
     ├── colors.h
     ├── cqueue.c
     ├── gantt.c
@@ -30,7 +39,7 @@ A basic CLI simulator for cpu scheduling algorithms written in `C`. This simulat
     ├── process.c
     ├── sort.c
     ├── table.c
-    └── utilities.h
+    └── utils.h
 ```
 
 

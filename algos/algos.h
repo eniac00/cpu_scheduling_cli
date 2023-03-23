@@ -6,5 +6,6 @@
 #include "rr.c"
 #include "sjf.c"
 #include "npp.c"
+#include "srtf.c"
 
 #endif

@@ -1,4 +1,4 @@
-static void SJF(process_t * process, int len) {
+static void SRTF(process_t * process, int len) {
 
     // sorting the process array according to the arrival time
     qsort(process, len, sizeof(process[0]), SortAT);
@@ -19,6 +19,7 @@ static void SJF(process_t * process, int len) {
     int start_time = 0;
     int elapsed_time = 0;
     int cp = 0;                 // current process
+    int new_cp = -1;
     int total_process_finished = 0;
 
     // copying all the processes burst time to bt[]
@@ -30,10 +31,13 @@ static void SJF(process_t * process, int len) {
     EnQueueINT(&readyQ, cp);
     NewProcess(process, len, start_time, start_time, &readyQ, cp);
     SortQueueINT_Arr(bt, &readyQ);
+    
 
     while (!TAILQ_EMPTY(&readyQ) && total_process_finished<len) {
 
         cp = Dequeue(&readyQ);
+        EnQueueINT(&readyQ, cp);
+        SortQueueINT_Arr(bt, &readyQ);
 
         if (start_time < process[cp].at) {
 
@@ -45,38 +49,63 @@ static void SJF(process_t * process, int len) {
             EnQueueSTR(&processNames, "-");
             EnQueueINT(&intervals, start_time);
             EnQueueINT(&readyQ, cp);
+            SortQueueINT_Arr(bt, &readyQ);
 
         } else {
 
-            start_time += bt[cp];
-            elapsed_time = bt[cp];
-            NewProcess(process, len, start_time - bt[cp], start_time, &readyQ, cp); 
+            start_time++;
+            elapsed_time++;
+            bt[cp]--;
+
+
+            NewProcess(process, len, start_time-1, start_time, &readyQ, cp);
             SortQueueINT_Arr(bt, &readyQ);
-            process[cp].ct = start_time;
-            total_process_finished++;
 
-            // context switch
-            EnQueueINT(&elapsedTime, elapsed_time);
-            EnQueueSTR(&processNames, process[cp].pid);
-            EnQueueINT(&intervals, start_time);
+            if (bt[cp] == 0) {
 
+                total_process_finished++;
+                process[cp].ct = start_time;
+                // context switch
+                EnQueueINT(&elapsedTime, elapsed_time);
+                EnQueueSTR(&processNames, process[cp].pid);
+                EnQueueINT(&intervals, start_time);
+                Dequeue(&readyQ); 
+                elapsed_time = 0;
+
+            } else {
+
+                new_cp = Dequeue(&readyQ);
+                EnQueueINT(&readyQ, new_cp);
+                SortQueueINT_Arr(bt, &readyQ);
+
+                if (new_cp != -1 && new_cp != cp) {
+
+                    // context switch
+                    EnQueueINT(&elapsedTime, elapsed_time);
+                    EnQueueSTR(&processNames, process[cp].pid);
+                    EnQueueINT(&intervals, start_time);
+                    SortQueueINT_Arr(bt, &readyQ);
+                    elapsed_time = 0;
+
+                }
+            }
         }
     }
 
-    // calculating waiting times and turnaround times of all processes using the completion time
+    // calculating waiting times and turnaround times of all process using the completion time
     for(int i=0; i<len; i++) {
         process[i].tat = process[i].ct - process[i].at;
         process[i].wt = process[i].tat - process[i].bt;
     }
 
-    printf(BOLD YEL "\n\n\tSJF [Shortest Job First] \n\n\n" RESET);
+    printf(BOLD YEL "\n\n\tSRTF [Shortest Remaining Time First] \n\n\n" RESET);
 
     // making gantt chart
     MakeGanttChart(&elapsedTime, &intervals, &processNames);
     // making the table
     TableMaker(process, len, 0);
 
-    // freeing memory allocations of all the queues
+    // freeing memory allocations of all the queues 
     FreeQueueINT(&elapsedTime);
     FreeQueueINT(&intervals);
     FreeQueueINT(&readyQ);

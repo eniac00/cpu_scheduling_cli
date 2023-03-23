@@ -7,6 +7,7 @@
  * wt -> waiting time
  * prt -> priority of the process
  */
+
 typedef struct process {
     char pid[2];
     int at;

@@ -2,7 +2,7 @@
  * @param reference of process_t array
  * @param length of the process_t array
  */
-float AverageWT(process_t * process, int len) {
+static float AverageWT(process_t * process, int len) {
     
     int total_wt = 0;
 
@@ -17,7 +17,7 @@ float AverageWT(process_t * process, int len) {
  * @param reference of process_t array
  * @param length of the process_t array
  */
-float AverageTAT(process_t * process, int len) {
+static float AverageTAT(process_t * process, int len) {
     int total_tat = 0;
 
     for (int i=0; i<len; i++) {
@@ -32,7 +32,7 @@ float AverageTAT(process_t * process, int len) {
  * @param length of the process_t array
  * @param pFlag = 1 if it is a priority based scheduling otherwise 0
  */
-void TableMaker(process_t * process, int len, int pFlag) {
+static void TableMaker(process_t * process, int len, int pFlag) {
 
     /* for (int i=0; i<len; i++) { */
     /*     printf("%s\t%d\t%d\t%d\n", process[i].pid, process[i].at, process[i].bt, process[i].ct); */
@@ -51,13 +51,13 @@ void TableMaker(process_t * process, int len, int pFlag) {
         }
     } else {
         printf("\n");
-        printf(BOLD BLU "\t+-----+-------------+------------+-----------------+-----------------+--------------+\n");
+        printf(BOLD BLU "\t+-----+--------------+------------+-----------------+-----------------+--------------+\n");
         printf("\t| PID | Arrival Time | Burst Time | Completion Time | Turnaround Time | Waiting Time |\n");
-        printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n" RESET);
+        printf("\t+-----+--------------+------------+-----------------+-----------------+--------------+\n" RESET);
 
         for (int i=0; i<len; i++) {
-            printf(BOLD WHT"\t| %3s |     %3d     |     %3d    |       %3d       |       %3d       |     %3d      |\n", process[i].pid, process[i].at, process[i].bt, process[i].ct, process[i].tat, process[i].wt);
-            printf("\t+-----+-------------+------------+-----------------+-----------------+--------------+\n" RESET);
+            printf(BOLD WHT"\t| %3s |      %3d     |     %3d    |       %3d       |       %3d       |     %3d      |\n", process[i].pid, process[i].at, process[i].bt, process[i].ct, process[i].tat, process[i].wt);
+            printf("\t+-----+--------------+------------+-----------------+-----------------+--------------+\n" RESET);
         }
     }
 

@@ -19,7 +19,7 @@
  * converts given queues all elements out of 20;
  */
 
-void PreProcess(head_t_int * elapsedTime) {
+static void PreProcess(head_t_int * elapsedTime) {
 
     int sum = SumQueueINT(elapsedTime);
     int temp;
@@ -37,7 +37,7 @@ void PreProcess(head_t_int * elapsedTime) {
  * @param string_queue_head [process names for each box]
  */
 
-void MakeGanttChart(head_t_int * elapsedTime, head_t_int * intervals, head_t_str * processNames) {
+static void MakeGanttChart(head_t_int * elapsedTime, head_t_int * intervals, head_t_str * processNames) {
 
     // convert all the elapsed time out of 20
     PreProcess(elapsedTime);

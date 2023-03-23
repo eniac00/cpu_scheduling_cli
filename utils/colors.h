@@ -1,3 +1,6 @@
+#ifndef __COLORS_H__
+#define __COLORS_H__
+
 #define BOLD  "\x1B[1m"
 #define RED   "\x1B[31m"
 #define GRN   "\x1B[32m"
@@ -8,4 +11,4 @@
 #define WHT   "\x1B[37m"
 #define RESET "\x1B[0m"
 
-
+#endif

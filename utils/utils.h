@@ -1,5 +1,5 @@
-#ifndef __UTILITIES_H__
-#define __UTILITIES_H__
+#ifndef __UTILS_H__
+#define __UTILS_H__
 
 #include "cqueue.c"
 #include "colors.h"
