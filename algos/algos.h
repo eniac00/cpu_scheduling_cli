@@ -7,5 +7,6 @@
 #include "sjf.c"
 #include "npp.c"
 #include "srtf.c"
+#include "pp.c"
 
 #endif

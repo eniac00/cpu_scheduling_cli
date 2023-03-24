@@ -41,8 +41,7 @@ int main (int argc, char *argv []) {
     } else if (strcmp(argv[1], "NPP") == 0) {
         NPP(process, len);
     } else if (strcmp(argv[1], "PP") == 0) {
-        fprintf(stderr, "Not implemented\n");
-        /* PPS(); */
+        PP(process, len);
     } else if (strcmp(argv[1], "SRTF") == 0) {
         SRTF(process, len);
     } else {
