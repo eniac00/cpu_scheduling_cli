@@ -11,7 +11,7 @@ A basic CLI simulator for cpu scheduling algorithms written in `C`. This simulat
 - [x] SJF [Shortest Job First]
 - [x] SRTF [Shortest Remaining Time First]
 - [x] NPP [Non Preemptive Priority]
-- [ ] PP [Preemptive Priority]
+- [x] PP [Preemptive Priority]
 
 ## Folder Structure
 ---
