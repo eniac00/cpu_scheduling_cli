@@ -18,6 +18,7 @@ static void SRTF(process_t * process, int len) {
     int bt[len];                // burst time array for temporary use
     int start_time = 0;
     int elapsed_time = 0;
+    int cpy_start_time = 0;
     int cp = 0;                 // current process
     int new_cp = -1;
     int total_process_finished = 0;
@@ -43,6 +44,7 @@ static void SRTF(process_t * process, int len) {
 
             elapsed_time = process[cp].at - start_time;
             start_time += elapsed_time;
+            cpy_start_time = start_time;
 
             // context switch
             EnQueueINT(&elapsedTime, elapsed_time);
@@ -54,6 +56,7 @@ static void SRTF(process_t * process, int len) {
         } else {
 
             start_time++;
+            cpy_start_time++;
             elapsed_time++;
             bt[cp]--;
 

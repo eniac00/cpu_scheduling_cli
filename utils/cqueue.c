@@ -51,7 +51,7 @@ static void FreeQueueINT(head_t_int * head) {
 
 /*sort the queue using an supporting array
  * queue will be sorted based on the value in array
- * @param an array that will be the basis of the sorting usually burt_time array or priority array
+ * @param an array that will be the basis of the sorting usually burst_time array or priority array
  * @param head reference of the ready queue
  */
 static void SortQueueINT_Arr(int *arr, head_t_int * head) {

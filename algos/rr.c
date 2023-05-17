@@ -17,6 +17,7 @@ static void RR(process_t * process, int len, int tq) {
 
     int bt[len];                    // burst time array for temporary use
     int start_time = 0;
+    int cpy_start_time = 0;              // copy of start_time
     int elapsed_time = 0;
     int cp = 0;                     // current process
     int total_process_finished = 0;
@@ -29,62 +30,73 @@ static void RR(process_t * process, int len, int tq) {
     EnQueueINT(&intervals, start_time);
     EnQueueINT(&readyQ, cp);
 
-    while (!TAILQ_EMPTY(&readyQ) && total_process_finished<len) {
+    while (total_process_finished<len) {
 
-        if (start_time < process[cp].at) {
+        if (TAILQ_EMPTY(&readyQ)) {
 
-            elapsed_time = process[cp].at - start_time;
-            start_time += elapsed_time;
-
-            // context switch
-            EnQueueINT(&elapsedTime, elapsed_time);
-            EnQueueSTR(&processNames, "-");
-            EnQueueINT(&intervals, start_time);
+            cpy_start_time++;
+            cp = NewProcess(process, len, cpy_start_time, cpy_start_time, &readyQ, cp);
 
         } else {
 
-            cp = Dequeue(&readyQ);
+            if (start_time < process[cp].at) {
 
-            if (bt[cp] > tq) {
-
-                elapsed_time = tq;
+                elapsed_time = process[cp].at - start_time;
                 start_time += elapsed_time;
-                bt[cp] -= tq;
-
-                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
+                cpy_start_time = start_time;
 
                 // context switch
                 EnQueueINT(&elapsedTime, elapsed_time);
-                EnQueueSTR(&processNames, process[cp].pid);
+                EnQueueSTR(&processNames, "-");
                 EnQueueINT(&intervals, start_time);
 
-                if (bt[cp] == 0) {
+            } else {
+
+                cp = Dequeue(&readyQ);
+
+                if (bt[cp] > tq) {
+
+                    elapsed_time = tq;
+                    start_time += elapsed_time;
+                    cpy_start_time = start_time;
+                    bt[cp] -= tq;
+
+                    NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
+
+                    // context switch
+                    EnQueueINT(&elapsedTime, elapsed_time);
+                    EnQueueSTR(&processNames, process[cp].pid);
+                    EnQueueINT(&intervals, start_time);
+
+                    if (bt[cp] == 0) {
+
+                        process[cp].ct = start_time;
+                        total_process_finished++;
+
+                    } else {
+
+                        EnQueueINT(&readyQ, cp);
+
+                    }
+
+                } else {
+
+                    elapsed_time = bt[cp];
+                    start_time += elapsed_time;
+                    cpy_start_time = start_time;
+                    bt[cp] = 0;
+
+                    NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
+
+                    // context switch
+                    EnQueueINT(&elapsedTime, elapsed_time);
+                    EnQueueSTR(&processNames, process[cp].pid);
+                    EnQueueINT(&intervals, start_time);
 
                     process[cp].ct = start_time;
                     total_process_finished++;
 
-                } else {
-
-                    EnQueueINT(&readyQ, cp);
-
                 }
-
-            } else {
-
-                elapsed_time = bt[cp];
-                start_time += elapsed_time;
-                bt[cp] = 0;
-
-                NewProcess(process, len, start_time-elapsed_time, start_time, &readyQ, cp);
-
-                // context switch
-                EnQueueINT(&elapsedTime, elapsed_time);
-                EnQueueSTR(&processNames, process[cp].pid);
-                EnQueueINT(&intervals, start_time);
-
-                process[cp].ct = start_time;
-                total_process_finished++;
-
             }
         }
     }
